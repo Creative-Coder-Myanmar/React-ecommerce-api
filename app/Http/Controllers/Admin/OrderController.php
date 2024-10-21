@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
-    public function show()
+    public function index()
     {
         $products = Order::with('user')->get();
 
@@ -19,7 +19,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function detail(Order $order)
+    public function show(Order $order)
     {
         $order = Order::where('id', $order->id)->with('products')->first();
         return response()->json([
@@ -88,15 +88,6 @@ class OrderController extends Controller
         $order->update([
             'status' => request('status'),
         ]);
-
-        $orderProducts = $order->products;
-
-        foreach ($orderProducts as $orderProduct) {
-            $product = Product::where('id', $orderProduct->id)->first();
-            $product->update([
-                'quantity' => $product->quantity - $orderProduct->pivot->quantity
-            ]);
-        }
 
         return response()->json([
             'message' => 'order update successful.',

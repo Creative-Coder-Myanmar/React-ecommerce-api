@@ -32,8 +32,8 @@ Route::delete('/products/{product}', [ProductController::class, 'delete'])->midd
 Route::post('/products/{product}/update-image', [ProductController::class, 'imageUpdate'])->middleware(['auth:sanctum', AdminMiddleware::class]);
 
 //order api
-Route::get('/orders', [OrderController::class, 'show']);
-Route::get('/orders/{order}', [OrderController::class, 'detail']);
-Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth:sanctum', AdminMiddleware::class]);
+Route::get('/orders', [OrderController::class, 'index']);
+Route::get('/orders/{order}', [OrderController::class, 'show']);
+Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth:sanctum']);
 Route::put('/orders/{order}', [OrderController::class, 'update'])->middleware(['auth:sanctum', AdminMiddleware::class]);
 Route::delete('/orders/{order}', [OrderController::class, 'delete'])->middleware(['auth:sanctum', AdminMiddleware::class]);
