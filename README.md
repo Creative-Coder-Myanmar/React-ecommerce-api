@@ -309,39 +309,43 @@ All requests (except user registration and login and get products and single pro
 - **Request Body:**
     ```json
     {
-        "user_id": "integer",
-        "total": "number",
+        "total_amount": "number",
         "order_products": [
             {
                 "product_id": "integer",
                 "quantity": "integer"
             }
-        ]
+        ],
+        "shipping_address" : "string|nullable",
+        "notes" : "string|nullable",
+        "screen_shot" : "string|nullable",
     }
     ```
 - **Response:**
   - **201 Created**
     ```json
     {
-        "message": "Order created successfully."
+        "message" : "order create successful.",
+        "order" : "object"
     }
     ```
 
-#### Update Order (Admin Only)
+#### Update Order status (Admin Only)
 
 - **Endpoint:** `PUT /api/orders/{order}`
 - **Description:** Update an existing order.
 - **Request Body:**
     ```json
     {
-        "status": "string"
+        "status": "confirmed"
     }
     ```
 - **Response:**
   - **200 OK**
     ```json
     {
-        "message": "Order updated successfully."
+        "message": "order update successful.",
+        "product": "object"
     }
     ```
 
@@ -350,8 +354,12 @@ All requests (except user registration and login and get products and single pro
 - **Endpoint:** `DELETE /api/orders/{order}`
 - **Description:** Delete an order.
 - **Response:**
-  - **204 No Content**
-
+  - **200 OK**
+    ```json
+    {
+    "message": "order delete successful"
+    }
+    ```
 ## Error Responses
 
 Common error responses include:

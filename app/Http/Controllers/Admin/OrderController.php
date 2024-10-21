@@ -12,10 +12,10 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $products = Order::with('user')->get();
+        $orders = Order::with('user')->get();
 
         return response()->json([
-            'products' => $products
+            'orders' => $orders
         ]);
     }
 
@@ -63,8 +63,8 @@ class OrderController extends Controller
         }
 
         return response()->json([
-            'message' => 'product create successful.',
-            'product' => $order
+            'message' => 'order create successful.',
+            'order' => $order
         ]);
     }
     public function update(Order $order)

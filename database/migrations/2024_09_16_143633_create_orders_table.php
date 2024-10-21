@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('status');
             $table->integer('total_amount');
-            $table->text('address');
+            $table->text('address')->nullable();
             $table->text('screen_shot')->nullable();
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
