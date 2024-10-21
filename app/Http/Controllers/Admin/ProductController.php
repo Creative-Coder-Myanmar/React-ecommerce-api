@@ -57,7 +57,6 @@ class ProductController extends Controller
         $validator = Validator::make(request()->all(), [
             'name' => ['required', 'min:3'],
             'price' => ['required'],
-            'quantity' => ['required'],
             'description' => ['nullable'],
             'category_id' => ['required']
         ]);
@@ -71,7 +70,6 @@ class ProductController extends Controller
         $product->update([
             'name' => request('name'),
             'price' => request('price'),
-            'quantity' => request('quantity'),
             'description' => request('description'),
             'category_id' => request('category_id'),
         ]);
