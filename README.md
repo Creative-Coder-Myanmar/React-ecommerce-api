@@ -1,8 +1,6 @@
 
 # Installation
 
-Install my-project with npm
-
 ```bash
     git clone git@github.com:Creative-Coder-Myanmar/React-ecommerce-api.git
     cd React-ecommerce-api
