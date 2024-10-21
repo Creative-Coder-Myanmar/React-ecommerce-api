@@ -270,7 +270,7 @@ All requests (except user registration and login and get products and single pro
     {
         "user_id": "integer",
         "total": "number",
-        "items": [
+        "order_products": [
             {
                 "product_id": "integer",
                 "quantity": "integer"
