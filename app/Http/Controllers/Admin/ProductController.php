@@ -126,7 +126,7 @@ class ProductController extends Controller
             ]);
         }
         return response()->json([
-            'message' => 'product updated success.'
+            'message' => 'product images updated success.'
         ]);
     }
 }

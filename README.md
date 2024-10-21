@@ -264,7 +264,7 @@ All requests (except user registration and login and get products and single pro
   - **200 OK**
     ```json
     {
-        "message": "Product image updated successfully."
+        " message" : " product images updated success."
     }
     ```
 
