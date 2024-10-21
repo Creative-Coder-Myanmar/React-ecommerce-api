@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -16,7 +17,7 @@ class UserController extends Controller
     {
         $validator = Validator::make(request()->all(), [
             'name' => ['required', 'min:2', 'max:50'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => ['required', 'min:6', 'max:30'],
             'phone' => ['required', 'min:9', 'max:20'],
             'address' => ['required', 'min:5'],

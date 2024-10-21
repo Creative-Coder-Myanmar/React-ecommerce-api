@@ -36,7 +36,8 @@ All requests (except user registration and login and get products and single pro
   - **201 Created**
     ```json
     {
-        "message": "User created successfully."
+        "message": "User created",
+        "token": "string"
     }
     ```
 
@@ -55,6 +56,7 @@ All requests (except user registration and login and get products and single pro
   - **200 OK**
     ```json
     {
+        "message": "login success",
         "token": "string"
     }
     ```
@@ -69,7 +71,8 @@ All requests (except user registration and login and get products and single pro
     {
         "id": "integer",
         "name": "string",
-        "email": "string"
+        "email": "string".
+        ...
     }
     ```
 
@@ -104,7 +107,11 @@ All requests (except user registration and login and get products and single pro
   - **201 Created**
     ```json
     {
-        "message": "Category created successfully."
+        "message": "category created.",
+        "category": {
+            "id" : "integer",
+            "name": "string"
+        }
     }
     ```
 
@@ -122,7 +129,11 @@ All requests (except user registration and login and get products and single pro
   - **200 OK**
     ```json
     {
-        "message": "Category updated successfully."
+        "message": "category updated.",
+        "category": {
+            "id" : "integer",
+            "name": "string"
+        }
     }
     ```
 
@@ -131,7 +142,12 @@ All requests (except user registration and login and get products and single pro
 - **Endpoint:** `DELETE /api/categories/{category}`
 - **Description:** Delete a category.
 - **Response:**
-  - **204 No Content**
+  - **200 OK**
+    ```json
+    {
+    "message": "delete successful."
+    }
+  ```
 
 ### 3. Products
 
@@ -147,7 +163,9 @@ All requests (except user registration and login and get products and single pro
             "id": "integer",
             "name": "string",
             "price": "number",
-            "description": "string"
+            "description": "string",
+            "category" : "object",
+            "images" : "array"
         }
     ]
     ```
@@ -159,11 +177,13 @@ All requests (except user registration and login and get products and single pro
 - **Response:**
   - **200 OK**
     ```json
-    {
+     {
         "id": "integer",
         "name": "string",
         "price": "number",
-        "description": "string"
+        "description": "string",
+        "category" : "object",
+        "images" : "array"
     }
     ```
 
@@ -176,14 +196,22 @@ All requests (except user registration and login and get products and single pro
     {
         "name": "string",
         "price": "number",
+        "category_id" : "integer",
         "description": "string"
     }
     ```
 - **Response:**
   - **201 Created**
     ```json
-    {
-        "message": "Product created successfully."
+     {
+        "message": "product created successful.",
+        "product": {
+            "name": "string",
+            "price": "integer",
+            "description": "string",
+            "category_id": "integer",
+            "id": "integer"
+        }
     }
     ```
 
@@ -196,14 +224,22 @@ All requests (except user registration and login and get products and single pro
     {
         "name": "string",
         "price": "number",
-        "description": "string"
+        "description": "string",
+        "category_id" : "1"
     }
     ```
 - **Response:**
   - **200 OK**
     ```json
     {
-        "message": "Product updated successfully."
+        "message": "product update successful.",
+        "product": {
+            "name": "string",
+            "price": "integer",
+            "description": "string",
+            "category_id": "integer",
+            "id": "integer"
+        }
     }
     ```
 
@@ -212,13 +248,18 @@ All requests (except user registration and login and get products and single pro
 - **Endpoint:** `DELETE /api/products/{product}`
 - **Description:** Delete a product.
 - **Response:**
-  - **204 No Content**
+  - **200 OK**
+    ```json
+    {
+        "message": "product delete successful"
+    }
+    ```
 
 #### Update Product Image (Admin Only)
 
 - **Endpoint:** `POST /api/products/{product}/update-image`
 - **Description:** Update the image of a product.
-- **Request Body:** Form data with file input.
+- **Request Body:** Form data with file input. Field - images
 - **Response:**
   - **200 OK**
     ```json
