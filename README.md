@@ -1,4 +1,21 @@
-# API Documentation
+
+# Installation
+
+Install my-project with npm
+
+```bash
+    git cloen git@github.com:Creative-Coder-Myanmar/React-ecommerce-api.git
+    cd React-ecommerce-api
+    composer install
+    cp .env.example .env
+    php artisan key:generate
+    php artisan storage:link
+    php artisan serve
+```
+    
+
+
+## API Documentation
 
 ## Overview
 
