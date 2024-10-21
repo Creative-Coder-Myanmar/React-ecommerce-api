@@ -4,7 +4,7 @@
 Install my-project with npm
 
 ```bash
-    git cloen git@github.com:Creative-Coder-Myanmar/React-ecommerce-api.git
+    git clone git@github.com:Creative-Coder-Myanmar/React-ecommerce-api.git
     cd React-ecommerce-api
     composer install
     cp .env.example .env
@@ -89,7 +89,6 @@ All requests (except user registration and login and get products and single pro
         "id": "integer",
         "name": "string",
         "email": "string",
-        //...
     }
     ```
 
