@@ -26,8 +26,8 @@ Route::put('/categories/{category}', [CategoryController::class, 'update'])->mid
 Route::delete('/categories/{category}', [CategoryController::class, 'delete'])->middleware(['auth:sanctum', AdminMiddleware::class]);
 
 //product api
-Route::get('/products', [ProductController::class, 'show']);
-Route::get('/products/{product}', [ProductController::class, 'detail']);
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{product}', [ProductController::class, 'show']);
 Route::post('/products', [ProductController::class, 'store'])->middleware(['auth:sanctum', AdminMiddleware::class]);
 Route::put('/products/{product}', [ProductController::class, 'update'])->middleware(['auth:sanctum', AdminMiddleware::class]);
 Route::delete('/products/{product}', [ProductController::class, 'delete'])->middleware(['auth:sanctum', AdminMiddleware::class]);

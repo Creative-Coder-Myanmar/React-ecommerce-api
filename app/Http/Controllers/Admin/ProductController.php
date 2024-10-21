@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
-    public function show()
+    public function index()
     {
         $products = Product::with('category', 'images')->get();
 
@@ -19,7 +19,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function detail(Product $product)
+    public function show(Product $product)
     {
         $product = Product::where('id', $product->id)->with('category', 'images')->first();
         return response()->json([
@@ -31,7 +31,6 @@ class ProductController extends Controller
         $validator = Validator::make(request()->all(), [
             'name' => ['required', 'min:3'],
             'price' => ['required'],
-            'quantity' => ['required'],
             'description' => ['nullable'],
             'category_id' => ['required']
         ]);
@@ -45,12 +44,11 @@ class ProductController extends Controller
         $product = Product::create([
             'name' => request('name'),
             'price' => request('price'),
-            'quantity' => request('quantity'),
             'description' => request('description'),
             'category_id' => request('category_id'),
         ]);
         return response()->json([
-            'message' => 'product create successful.',
+            'message' => 'product created successful.',
             'product' => $product
         ]);
     }
