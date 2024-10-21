@@ -71,7 +71,7 @@ All requests (except user registration and login and get products and single pro
     {
         "id": "integer",
         "name": "string",
-        "email": "string".
+        "email": "string",
         ...
     }
     ```
