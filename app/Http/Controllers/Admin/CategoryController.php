@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class CategoryController extends Controller
 {
 
-    public function show()
+    public function index()
     {
         $categories = Category::all();
         return response()->json([
