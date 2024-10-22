@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\ErrorJsonChanger;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
+    use ErrorJsonChanger;
     public function index()
     {
         $orders = Order::with('user')->get();
@@ -37,7 +39,7 @@ class OrderController extends Controller
         ]);
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $this->arrayToJsonChanger($validator->errors()->messages())
             ]);
         }
 
@@ -75,7 +77,7 @@ class OrderController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $this->arrayToJsonChanger($validator->errors()->messages())
             ]);
         }
 

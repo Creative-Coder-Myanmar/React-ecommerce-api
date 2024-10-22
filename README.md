@@ -74,18 +74,29 @@ All requests (except user registration and login and get products and single pro
 -   **Endpoint:** `POST /api/login`
 -   **Description:** Authenticate a user and return a token.
 -   **Request Body:**
+
     ```json
     {
         "email": "string",
         "password": "string"
     }
     ```
+
 -   **Response:**
     -   **200 OK**
         ```json
         {
             "message": "login success",
             "token": "string"
+        }
+        ```
+-   **Response:**
+    -   **422 Unprocessable Content**
+        ```json
+        {
+            "errors": {
+                "email": "Validation error message"
+            }
         }
         ```
 
@@ -99,7 +110,14 @@ All requests (except user registration and login and get products and single pro
         {
             "id": "integer",
             "name": "string",
-            "email": "string"
+            "email": "string",
+            "email_verified_at": "DateTime",
+            "profile": "string|null",
+            "role_id": "number",
+            "phone": "string",
+            "address": "string",
+            "created_at": "DateTime",
+            "updated_at": "DateTime"
         }
         ```
 
@@ -141,6 +159,16 @@ All requests (except user registration and login and get products and single pro
             }
         }
         ```
+-   **Response:**
+    -   **422 Unprocessable Content**
+        ```json
+        {
+            "message": "Unprocessable dat.",
+            "errors": {
+                "name": "Validation error message"
+            }
+        }
+        ```
 
 #### Update Category (Admin Only)
 
@@ -160,6 +188,16 @@ All requests (except user registration and login and get products and single pro
             "category": {
                 "id": "integer",
                 "name": "string"
+            }
+        }
+        ```
+-   **Response:**
+    -   **422 Unprocessable Content**
+        ```json
+        {
+            "message": "Unprocessable dat.",
+            "errors": {
+                "name": "Validation error message"
             }
         }
         ```
@@ -196,8 +234,17 @@ All requests (except user registration and login and get products and single pro
                 "name": "string",
                 "price": "number",
                 "description": "string",
-                "category": "object",
-                "images": "array"
+                "category": {
+                    "id": "interger",
+                    "name": "string"
+                },
+                "images": [
+                    {
+                        "id": "interger",
+                        "product_id": "integer",
+                        "url": "string"
+                    }
+                ]
             }
         ]
         ```
@@ -214,8 +261,17 @@ All requests (except user registration and login and get products and single pro
             "name": "string",
             "price": "number",
             "description": "string",
-            "category": "object",
-            "images": "array"
+            "category": {
+                "id": "interger",
+                "name": "string"
+            },
+            "images": [
+                {
+                    "id": "interger",
+                    "product_id": "integer",
+                    "url": "string"
+                }
+            ]
         }
         ```
 
@@ -246,6 +302,19 @@ All requests (except user registration and login and get products and single pro
             }
         }
         ```
+-   **Response:**
+    -   **422 Unprocessable Content**
+        ```json
+        {
+            "message": "Unprocessable dat.",
+            "errors": {
+                "name": "Validation error message",
+                "price": "Validation error message",
+                "category_id": "Validation error message",
+                "description": "Validation error message"
+            }
+        }
+        ```
 
 #### Update Product (Admin Only)
 
@@ -271,6 +340,19 @@ All requests (except user registration and login and get products and single pro
                 "description": "string",
                 "category_id": "integer",
                 "id": "integer"
+            }
+        }
+        ```
+-   **Response:**
+    -   **422 Unprocessable Content**
+        ```json
+        {
+            "message": "Unprocessable dat.",
+            "errors": {
+                "name": "Validation error message",
+                "price": "Validation error message",
+                "category_id": "Validation error message",
+                "description": "Validation error message"
             }
         }
         ```
@@ -328,9 +410,29 @@ All requests (except user registration and login and get products and single pro
         ```json
         {
             "id": "integer",
+            "status": "confirmed|pending",
+            "total_amount": "integer",
+            "address": "string",
+            "screen_shot": "string",
+            "notes": "string",
             "user_id": "integer",
-            "total": "number",
-            "status": "string"
+            "created_at": "DateTime",
+            "updated_at": "DateTime",
+            "products": [
+                {
+                    "id": "integer",
+                    "name": "string",
+                    "description": "string",
+                    "price": "integer",
+                    "category_id": "integer",
+                    "created_at": "DateTime",
+                    "updated_at": "DateTime",
+                    "pivot": {
+                        "order_id": "integer",
+                        "product_id": "integer"
+                    }
+                }
+            ]
         }
         ```
 
@@ -354,11 +456,27 @@ All requests (except user registration and login and get products and single pro
     }
     ```
 -   **Response:**
+
     -   **201 Created**
         ```json
         {
             "message": "order create successful.",
             "order": "object"
+        }
+        ```
+
+-   **Response:**
+    -   **422 Unprocessable Content**
+        ```json
+        {
+            "message": "Unprocessable dat.",
+            "errors": {
+                "total_amount": "Validation error message",
+                "order_products": "Validation error message",
+                "shipping_address": "Validation error message",
+                "notes": "Validation error message",
+                "screen_shot": "Validation error message"
+            }
         }
         ```
 

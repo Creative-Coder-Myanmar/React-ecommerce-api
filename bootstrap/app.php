@@ -27,7 +27,11 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $exceptions->render(function (Exception $e) {
             return response()->json([
-                'message' => $e->getMessage()
+                [
+                    "errors" => [
+                        'message' => $e->getMessage()
+                    ]
+                ]
             ]);
         });
     })->create();

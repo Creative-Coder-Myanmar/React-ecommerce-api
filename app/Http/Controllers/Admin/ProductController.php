@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\ErrorJsonChanger;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Product;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
+    use ErrorJsonChanger;
     public function index()
     {
         $products = Product::with('category', 'images')->get();
@@ -37,7 +39,7 @@ class ProductController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $this->arrayToJsonChanger($validator->errors()->messages())
             ]);
         }
 
@@ -63,7 +65,7 @@ class ProductController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $this->arrayToJsonChanger($validator->errors()->messages())
             ]);
         }
 
@@ -94,7 +96,7 @@ class ProductController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $this->arrayToJsonChanger($validator->errors()->messages())
             ]);
         }
 

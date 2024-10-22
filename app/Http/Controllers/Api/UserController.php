@@ -68,7 +68,7 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Unprocessable dat.',
-                'errors' => $validator->errors()
+                'errors' => $this->arrayToJsonChanger($validator->errors()->messages())
             ], 422);
         }
 
@@ -76,7 +76,9 @@ class UserController extends Controller
 
         if (!$user) {
             return response()->json([
-                'message' => 'Email does\'t exists.',
+                'errors' => [
+                    'email' => 'Email does\'t exists.'
+                ],
             ], 422);
         }
 
@@ -106,13 +108,15 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Unprocessable data.',
-                'errors' => $validator->errors()
+                'errors' => $this->arrayToJsonChanger($validator->errors()->messages())
             ], 422);
         }
 
         if ($user->id != request()->user()->id) {
             return response()->json([
-                'message' => 'U cant update another user\'s profile. '
+                'errors' => [
+                    'message' => 'U cant update another user\'s profile. '
+                ]
             ], 422);
         }
 

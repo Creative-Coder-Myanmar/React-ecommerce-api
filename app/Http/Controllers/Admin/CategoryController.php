@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\ErrorJsonChanger;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
+    use ErrorJsonChanger;
 
     public function index()
     {
@@ -25,7 +27,7 @@ class CategoryController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $this->arrayToJsonChanger($validator->errors()->messages())
             ]);
         }
 
@@ -47,7 +49,7 @@ class CategoryController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'errors' => $this->arrayToJsonChanger($validator->errors()->messages())
             ]);
         }
 
