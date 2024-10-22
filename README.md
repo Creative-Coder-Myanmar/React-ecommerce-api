@@ -41,7 +41,7 @@ All requests (except user registration and login and get products and single pro
     {
         "name": "string",
         "email": "string",
-        "password": "string",
+        "password": "string|min:6|max:30",
         "phone": "integer|min:9",
         "address": "string"
     }
@@ -155,12 +155,14 @@ All requests (except user registration and login and get products and single pro
 -   **Endpoint:** `DELETE /api/categories/{category}`
 -   **Description:** Delete a category.
 -   **Response:**
+
     -   **200 OK**
         ```json
         {
             "message": "delete successful."
         }
         ```
+
     ```
 
     ```
