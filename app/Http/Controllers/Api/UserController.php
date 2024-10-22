@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Helpers\ErrorJsonChanger;
 
 class UserController extends Controller
 {
+    use ErrorJsonChanger;
     public function store()
     {
         $validator = Validator::make(request()->all(), [
@@ -27,7 +29,7 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Unprocessable dat.',
-                'errors' => $validator->errors()
+                'errors' => $this->arrayToJsonChanger($validator->errors()->messages())
             ], 422);
         }
 

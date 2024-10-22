@@ -54,6 +54,20 @@ All requests (except user registration and login and get products and single pro
             "token": "string"
         }
         ```
+-   **Response:**
+    -   **422 Unprocessable Content**
+        ```json
+        {
+            "message": "Unprocessable dat.",
+            "errors": {
+                "name": "Validation error message",
+                "email": "Validation error message",
+                "password": "Validation error message",
+                "phone": "Validation error message",
+                "address": "Validation error message"
+            }
+        }
+        ```
 
 #### Login User
 
