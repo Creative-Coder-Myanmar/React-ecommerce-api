@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
@@ -15,6 +16,15 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with('user')->get();
+
+        return response()->json([
+            'orders' => $orders
+        ]);
+    }
+
+    public function userOrders()
+    {
+        $orders = auth()->user()->orders()->with('products')->get();
 
         return response()->json([
             'orders' => $orders

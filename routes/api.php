@@ -33,6 +33,7 @@ Route::post('/products/{product}/update-image', [ProductController::class, 'imag
 
 //order api
 Route::get('/orders', [OrderController::class, 'index'])->middleware(['auth:sanctum']);
+Route::get('/user_orders', [OrderController::class, 'userOrders'])->middleware(['auth:sanctum']);
 Route::get('/orders/{order}', [OrderController::class, 'show'])->middleware(['auth:sanctum']);
 Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth:sanctum']);
 Route::put('/orders/{order}', [OrderController::class, 'update'])->middleware(['auth:sanctum', AdminMiddleware::class]);
